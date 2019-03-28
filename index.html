@@ -13,9 +13,7 @@
       href="https://fonts.googleapis.com/css?family=PT+Serif:400,400i,700,700i"
     />
     <link rel="stylesheet" href="FiraCode/distr/fira_code.css" />
-
     <link rel="stylesheet" href="custom.css" />
-
     <style>
       .shower {
         --slide-ratio: calc(16 / 9);
@@ -62,9 +60,9 @@
 
     <section class="slide">
       <p>
-        Берём <em class="accent">величины из реальной жизни</em> и бережно
-        переносим их в <em class="accent">графические величины</em>, которые
-        понимает машина.
+        Берём <em class="accent">абстрактные величины</em> и бережно переносим
+        их в <em class="accent">визуальные величины</em>, которые понимает
+        машина.
       </p>
     </section>
 
@@ -337,6 +335,70 @@
           <code>}</code>
         </div>
       </pre>
+    </section>
+
+    <section class="slide">
+      <p>
+        Динамически изменяя <code class="accent">window</code> все зависимые от
+        него детали интерфейса высчитывают свое
+        <em class="accent">новое состояние</em>.
+      </p>
+      <p class="next">
+        Они не хранят его отдельно потому нет проблемы с синхронизацией
+        отдельных элементов.
+      </p>
+    </section>
+
+    <section class="slide blueprint">
+      <pre>
+        <code>function handle<span class="accent">Wheel</span>Event(event) {</code>
+        <code>  let action = {</code>
+        <code>    type: 'wheel',</code>
+        <code>    deltaY: event.deltaY,</code>
+        <code>    pointerX: event.layerX,</code>
+        <code>  };</code>
+        <code>  transform = reduce(transform, action);</code>
+        <code class="comment">  // ...</code>
+        <code>}</code>
+      </pre>
+    </section>
+
+    <section class="slide blueprint">
+      <pre>
+        <code>function reduce(transform, action) {</code>
+        <div class="next">
+          <code class="comment">  // только код обработки type == 'wheel'</code>
+          <code>  let deltaK = 2 ** (-action.deltaY / 500);</code>
+          <code>  let deltaX = (action.pointerX - transform.x) / transform.k;</code>
+        </div>
+        <div class="next">
+          <code class="comment">  // scaleExtent = [1, 32]</code>
+          <code>  let k = constrain(scaleExtent, transform.k * deltaK);</code>
+          <code class="comment">  // translateExtent = [0, width]</code>
+          <code>  let x = constrainX(translateExtent,</code>
+          <code>                     action.pointerX - deltaX * k, k);</code>
+        </div>
+        <code>  return { k, x };</code>
+        <code>}</code>
+      </pre>
+    </section>
+
+    <section class="slide darkside">
+      <p class="title"><em class="accent">Что</em> я сейчас вообще читаю? 😨</p>
+    </section>
+
+    <section class="slide">
+      <p>
+        Использовать D3 и другие — нормально, но не помешает понимать
+        <em class="accent">математику</em> под капотом
+      </p>
+    </section>
+
+    <section class="slide">
+      <p>
+        <em class="accent">Интерактивные</em> визуализации делают ваше
+        приложение эффективным для пользователя
+      </p>
     </section>
 
     <section class="slide darkside" id="contacts">

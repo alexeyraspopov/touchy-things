@@ -1,0 +1,118 @@
+.slide {
+  padding: 100px 150px 100px 100px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+}
+.slide::after {
+  top: 85%;
+  width: auto;
+  background: none;
+  color: inherit;
+  opacity: 0.4;
+}
+.slide h1,
+.slide h2,
+.slide p,
+.slide li {
+  font-family: PT Serif, Georgia, serif;
+  color: inherit;
+  line-height: 1.5;
+}
+.slide p,
+.slide li {
+  font-size: 1.5em;
+}
+.slide p code {
+  background: none;
+  padding: 0;
+}
+.slide .title {
+  font-size: 70px;
+  line-height: 1.25;
+  text-align: left;
+  margin: 0;
+}
+.slide .title.emoji {
+  align-self: center;
+  font-size: 110px;
+}
+.slide > p:only-child,
+.slide > ul:only-child,
+.slide > ol:only-child,
+.slide > pre:only-child {
+  margin-bottom: 0;
+}
+.slide code {
+  font-family: Fira Code, monospace;
+}
+.blueprint {
+  background: #3f51b5;
+  color: white;
+  border-color: rgba(255, 255, 255, 0.8);
+}
+.darkside {
+  background: #222;
+  color: white;
+  border-color: rgba(255, 255, 255, 0.8);
+}
+.yellow {
+  background: #ffeb3b;
+  color: #000;
+  border-color: #222;
+}
+.slide.blueprint pre code:not(:only-child)::before {
+  margin-left: -2.5em;
+  content: counter(code, decimal-leading-zero);
+  color: rgba(255, 255, 255, 0.4);
+}
+.slide.blueprint .comment {
+  color: rgba(255, 255, 255, 0.4);
+}
+.slide.darkside li::before {
+  color: rgba(255, 255, 255, 0.4);
+}
+.slide.yellow li::before {
+  color: rgba(0, 0, 0, 0.4);
+}
+.accent {
+  color: #ff5252;
+}
+.accent-2 {
+  color: #00e5ff;
+}
+.accent-3 {
+  color: #ffeb3b;
+}
+.primary-accent {
+  color: #00e5ff;
+}
+.secondary-accent {
+  color: #ff5252;
+}
+.slide a {
+  background: none;
+  border-bottom: 0.05em solid;
+}
+.slide pre mark {
+  margin: 0;
+}
+.slide .scene {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.slide li code {
+  background: none;
+  padding: 0;
+  color: #ff5252;
+}
+#contacts a {
+  color: white;
+  border-bottom: none;
+}

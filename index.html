@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <title>Трогательный интерфейс</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link
+      rel="stylesheet"
+      href="node_modules/shower-ribbon/styles/styles.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css?family=PT+Serif:400,400i,700,700i"
+    />
+    <!-- <link rel="stylesheet" href="FiraCode/distr/fira_code.css"> -->
+
+    <link rel="stylesheet" href="custom.css" />
+
+    <style>
+      .shower {
+        --slide-ratio: calc(16 / 9);
+      }
+    </style>
+  </head>
+  <body class="shower list">
+    <header class="caption">
+      <h1>Трогательный интерфейс</h1>
+      <p><a href="https://alexeyraspopov.com">Алексей Распопов</a></p>
+    </header>
+
+    <section class="slide">
+      <h2 class="title"><em class="accent">Трогательный</em> интерфейс</h2>
+    </section>
+
+    <section class="slide">
+      <h2 class="title">
+        In Soviet Union interface <em class="accent">touches</em> you
+      </h2>
+    </section>
+
+    <section class="slide">
+      <ul>
+        <li>
+          Frontend Developer @ <a href="https://datarobot.com">DataRobot</a>
+        </li>
+        <li>
+          Old man yells at cloud
+          <a href="https://twitter.com/alexeyraspopov">in Twitter</a>
+        </li>
+        <li>
+          Визуализация данных, паттерны, стремление к прекрасному, бритва Оккама
+        </li>
+      </ul>
+    </section>
+
+    <section class="slide darkside">
+      <p>
+        <strong>Visualization</strong> — constructing visual representations of
+        abstract data to <br /><em class="accent">amplify cognition</em>.
+      </p>
+    </section>
+
+    <section class="slide">
+      <p>
+        Берём <em class="accent">величины из реальной жизни</em> и бережно
+        переносим их в <em class="accent">графические величины</em>, которые
+        понимает машина.
+      </p>
+    </section>
+
+    <section class="slide darkside">
+      <p class="title">Есть две формулы<span class="accent">...</span></p>
+    </section>
+
+    <section class="slide blueprint">
+      <pre class="title">
+        <code>(<em class="accent">x</em> - b) / k</code>
+        <code>k * <em class="accent-2">x</em> + b</code>
+      </pre>
+    </section>
+
+    <section class="slide">
+      <a
+        href="https://medium.com/@mbostock/introducing-d3-scale-61980c51545f"
+        target="_blank"
+      >
+        <img
+          src="pictures/introducing-d3-scale.png"
+          alt="Introducing D3 scale article by mike Bostock"
+          class="place top"
+          style="width: 100%"
+      /></a>
+    </section>
+
+    <section class="slide darkside">
+      <p>
+        <strong>Шкала</strong> — функция, которая принимает
+        <em class="accent">абстрактное</em> значение и возвращает
+        <em class="accent">визуальное</em>.
+      </p>
+    </section>
+
+    <section class="slide blueprint">
+      <pre>
+        <code>function scaleLinear(domain, range) {</code>
+        <code>  return x => interpolate(range, normalize(domain, x));</code>
+        <code>}</code>
+      </pre>
+    </section>
+
+    <section class="slide blueprint">
+      <pre>
+        <code class="comment">// [N, N] -> [0, 1]</code>
+        <code>function normalize(range, x) {</code>
+        <code>  let k = range[1] - range[0];</code>
+        <code>  let b = range[0];</code>
+        <code>  return (x - b) / k;</code>
+        <code>}</code>
+      </pre>
+    </section>
+
+    <section class="slide blueprint">
+      <pre>
+        <code class="comment">// [0, 1] -> [N, N]</code>
+        <code>function interpolate(range, t) {</code>
+        <code>  let k = range[1] - range[0];</code>
+        <code>  let b = range[0];</code>
+        <code>  return b + k * t;</code>
+        <code>}</code>
+      </pre>
+    </section>
+
+    <section class="slide blueprint">
+      <pre>
+        <code>function scale([d0, d1], [r0, r1], <em class="accent-2">x</em>) {</code>
+        <code>  return r0 + (r1 - r0) * (<em class="accent-2">x</em> - d0) / (d1 - d0);</code>
+        <code>}</code>
+      </pre>
+    </section>
+
+    <section class="slide">
+      <a
+        href="https://esripress.esri.com/display/index.cfm?fuseaction=display&websiteID=190"
+        target="_blank"
+      >
+        <img
+          src="https://cdn-images-1.medium.com/max/2000/1*jsb78Rr2cDy6zrE7j2IKig.png"
+          alt="Data viz dimensions table"
+          class="cover"
+        />
+      </a>
+    </section>
+
+    <section class="slide blueprint">
+      <pre>
+        <code>let <span class="accent-2">datapoints</span> = [0.7300683106640126, -0.4606999589484973,</code>
+        <code>  0.0810442791570592, 1.264658107394293, -0.3999839805247,</code>
+        <code>  0.73774975545273, 1.181487753486226, -0.444039268800015,</code>
+        <code>  0.738077186476263, 0.0268356600561, -0.4351210367944046,</code>
+        <code>  0.2615460040301957, -0.560046949247555, 1.1022347693372,</code>
+        <code>  -2.7468864731377, -0.647799719212206, 1.550835553230532,</code>
+        <code>  1.312599295229566, -0.6733235254171, -0.502827667037121,</code>
+        <code>  -0.373466838991289, 0.0364248070202155, <span class="accent">...</span>];</code></pre>
+    </section>
+
+    <section class="slide">
+      <img
+        src="pictures/sample-line.svg"
+        width="800"
+        height="300"
+        alt="sample data plotted as a line"
+      />
+    </section>
+
+    <section class="slide blueprint">
+      <pre>
+        <code>let domainX = [0, datapoints.length - 1];</code>
+        <code>let scaleX = scaleLinear(domainX, [0, width]);</code>
+        <code>let domainY = [Math.min(...datapoints), Math.max(...datapoints)];</code>
+        <code>let scaleY = scaleLinear(domainY, [height, 0])</code>
+      </pre>
+    </section>
+
+    <section class="slide blueprint">
+      <pre>
+        <code>let getX = (d, i) => scaleX(i);</code>
+        <code>let getY = (d) => scaleY(d);</code>
+        <code>return &lt;<span class="accent">path</span> d={line(datapoints, getX, getY)} /&gt;</code>
+      </pre>
+    </section>
+
+    <section class="slide blueprint">
+      <pre>
+        <code>function line(data, x, y) {</code>
+        <code>  return data.reduce((curve, d, i) => {</code>
+        <code>    let prefix = i === 0 ? 'M' : 'L';</code>
+        <code>    let point = prefix + x(d, i) + ',' + y(d, i);</code>
+        <code>    return curve + point;</code>
+        <code>  }, <span class="accent-2">''</span>);</code>
+        <code>}</code>
+      </pre>
+    </section>
+
+    <section class="slide blueprint">
+      <p style="word-break: break-all">
+        <code>
+          <span class="accent">M</span>0,149.6283711248115<span class="accent"
+            >L</span
+          >0.80080080800807,158.4719886183878<span class="accent">L</span
+          >1.60161601606015,160.7229895999148<span class="accent">L</span
+          >2.40402402402402,136.7026041695307<span class="accent">L</span
+          >3.20320203203203,172.5591461581857<span class="accent">L</span
+          >4.00404004004004,123.4183330530276<span class="accent">L</span
+          >4.80804804804805,135.0474115675488<span class="accent">L</span
+          >5.65605605605605,162.1072718749057<span class="accent">L</span
+          >6.40606406406406,166.7711007103693<span class="accent">L</span
+          >7.207272072072007,145.88920391649837<span class="accent">...</span>
+        </code>
+      </p>
+    </section>
+
+    <section class="slide darkside">
+      <p class="title">Не видно же ничего<em class="accent">!</em></p>
+    </section>
+
+    <section class="slide darkside">
+      <video
+        alt="cant read comedy central GIF by Broad City"
+        src="https://media0.giphy.com/media/xT1R9B0bfYtYhyhoaY/giphy.mp4?cid=3640f6095c9cd74446466d7a2e6b4fe4"
+        poster="https://media0.giphy.com/media/xT1R9B0bfYtYhyhoaY/giphy_s.gif?cid=3640f6095c9cd74446466d7a2e6b4fe4"
+        autoplay
+        loop
+        playsinline
+        class="cover w"
+      ></video>
+    </section>
+
+    <section class="slide">
+      <div style="width:800px; height:300px; overflow:hidden">
+        <img
+          src="pictures/sample-line.svg"
+          width="800"
+          height="300"
+          style="transform-origin: center center; transform: scaleX(32)"
+          alt="sample data plotted as a line, scaled x32"
+        />
+      </div>
+    </section>
+
+    <section class="slide">
+      <p class="title">
+        Масштабируем величины <em class="accent">данных</em>, <br />а не
+        <em class="accent">машин</em>
+      </p>
+    </section>
+
+    <section class="slide">
+      <img
+        src="pictures/sample-line-x32.svg"
+        width="800"
+        height="300"
+        alt="sample data plotted as a line, scaled x32"
+      />
+    </section>
+
+    <section class="slide darkside">
+      <p>
+        Возможность пользователя <em class="accent">взаимодействовать</em> с
+        данными, дает свободу <em class="accent">исследования</em> и поиска
+        новых ответов 🙏
+      </p>
+    </section>
+
+    <section class="slide darkside">
+      <video
+        alt="iron man hologram GIF"
+        src="https://media0.giphy.com/media/SLBr5yLzocSYw/giphy.mp4?cid=3640f6095c9cd9e43965342f514736ab"
+        poster="https://media0.giphy.com/media/SLBr5yLzocSYw/giphy_s.gif?cid=3640f6095c9cd9e43965342f514736ab"
+        autoplay
+        loop
+        playsinline
+        class="cover w"
+      ></video>
+    </section>
+
+    <section class="slide blueprint">
+      <pre>
+        <code>let domainX = [0, datapoints.length - 1];</code>
+        <code>let scaleX = scaleLinear(domainX, [0, width]);</code>
+        <div class="next">
+          <code class="comment">// Участок данных на который мы смотрим</code>
+          <code>let [<mark>window</mark>, setWindon] = useState(domainX);</code>
+        </div>
+        <code class="next">let rescaledX = scaleLinear(<mark>window</mark>, [0, width]);</code>
+        <div class="next">
+          <code class="comment">// Линия рисуется относительно текущего участка</code>
+          <code>let getX = (d, i) => rescaledX(i);</code>
+        </div>
+      </pre>
+    </section>
+
+    <section class="slide blueprint">
+      <pre>
+        <code>render = (Data) => UI;</code>
+        <code>update = (State, Action) => NewState;</code>
+        <code>Actions = [Update Thing, Add Thing, Delete Thing, <span class="accent">...</span>];</code>
+        <code>State = Actions.reduce(update, InitialState);</code>
+        <code>State.subscribe(render);</code>
+      </pre>
+    </section>
+
+    <section class="slide">
+      <p class="title">
+        The holy grail <br />of <em class="accent">state reduction</em> 👏
+      </p>
+    </section>
+
+    <section class="slide blueprint">
+      <pre>
+        <code>let transform = { k: 1, x: 0 };</code>
+        <div class="next">
+          <code>function handleEvent(event) {</code>
+          <div class="next">
+            <code>  let action = { <span class="comment">/* необходимые данные от event */</span> };</code>
+            <div class="next">
+              <code class="comment">  // вычисляем новое состояние масштабирования</code>
+              <code>  transform = reduce(transform, action);</code>
+            </div>
+            <div class="next">
+              <code class="comment">  // вычисляем новый участок</code>
+              <code>  setWindow([</code>
+              <code>    <span class="accent">scaleX</span>.inverse((range[0] - transform.x) / transform.k),</code>
+              <code>    <span class="accent">scaleX</span>.inverse((range[1] - transform.x) / transform.k)</code>
+              <code>  ])</code>
+            </div>
+          </div>
+          <code>}</code>
+        </div>
+      </pre>
+    </section>
+
+    <!-- обновленный transform переводим в domain и отдаем обратно -->
+    <!-- рендер дальше сам разбереться -->
+
+    <section class="slide darkside" id="contacts">
+      <h2>Лайк, шейр, сабскрайб</h2>
+
+      <ul>
+        <li>
+          <a href="https://twitter.com/alexeyraspopov">
+            twitter.com/<span class="accent">alexeyraspopov</span>
+          </a>
+        </li>
+        <li>
+          <a href="https://github.com/alexeyraspopov">
+            github.com/<span class="accent">alexeyraspopov</span>
+          </a>
+        </li>
+      </ul>
+
+      <p>
+        <a href="https://alexeyraspopov.github.io/touchy-things">
+          alexeyraspopov.github.io/touchy-things
+        </a>
+      </p>
+    </section>
+
+    <footer class="badge">
+      <a href="https://github.com/shower/shower">Powered by Shower</a>
+    </footer>
+    <script src="node_modules/shower-core/shower.min.js"></script>
+    <script type="text/javascript">
+      let codeSnippets = document.querySelectorAll('pre');
+
+      let whiteListIdentifiers = [
+        'interpolate',
+        'normalize',
+        'scaleLinear',
+        'scale',
+        'reduce',
+        'render',
+        'update',
+      ];
+      let reservedWords = [
+        'class',
+        'extends',
+        'return',
+        'throw',
+        'new',
+        'function',
+        'async',
+        'await',
+        'for',
+        'if',
+        'of',
+        'switch',
+        'case',
+        'default',
+        'this',
+        'const',
+        'let',
+        'var',
+        'true',
+        'false',
+        'try',
+        'catch',
+        'finally',
+        'static',
+        'import',
+        'from',
+        'export',
+        'default',
+      ];
+
+      for (let snippet of codeSnippets) {
+        for (let textNode of getTextNodes(snippet)) {
+          transform(textNode);
+        }
+      }
+
+      function transform(textNode) {
+        let words = textNode.textContent.split(/\b/);
+        let fragment = document.createDocumentFragment();
+
+        let transformed = words.map(word => {
+          if (whiteListIdentifiers.includes(word)) {
+            return wrapTextNode(word, 'primary');
+          }
+
+          if (reservedWords.includes(word)) {
+            return wrapTextNode(word, 'secondary');
+          }
+
+          return document.createTextNode(word);
+        });
+
+        transformed.forEach(node => fragment.appendChild(node));
+        requestAnimationFrame(() =>
+          textNode.parentNode.replaceChild(fragment, textNode)
+        );
+      }
+
+      function* getTextNodes(root) {
+        let walker = document.createTreeWalker(root, NodeFilter.SHOW_TEXT, {
+          acceptNode,
+        });
+        let node;
+
+        while ((node = walker.nextNode())) {
+          yield node;
+        }
+      }
+
+      function acceptNode(node) {
+        if (node.textContent.trim().length > 0) {
+          return NodeFilter.FILTER_ACCEPT;
+        }
+
+        return NodeFilter.FILTER_REJECT;
+      }
+
+      function wrapTextNode(text, type) {
+        let wrapper = document.createElement('span');
+
+        wrapper.setAttribute('class', `${type}-accent`);
+        wrapper.appendChild(document.createTextNode(text));
+
+        return wrapper;
+      }
+    </script>
+  </body>
+</html>
